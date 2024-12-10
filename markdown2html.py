@@ -6,6 +6,15 @@ Script to convert markdown to html.
 import sys
 import os
 
+def set_ul_false(is_ul, h):
+    """
+    Closes an unordered list if it's open.
+    """
+    if is_ul:
+        h.write("</ul>\n")
+        is_ul = False
+    return is_ul
+
 def convertor(md_file, html_file):
     """
     Converts a markdown file to an HTML file.
@@ -13,24 +22,41 @@ def convertor(md_file, html_file):
     with open(md_file, "r", encoding="utf-8") as md:
         md_content = md.read()
 
-    with open(html_file, "a", encoding="utf-8") as html:
+    with open(html_file, "a", encoding="utf-8") as h:
+        is_ul = False
         for line in md_content.split("\n"):
-            if line.startswith("######"):
+            html_line = ""
+
+            if line.startswith("-"):
+                if not is_ul:
+                    h.write("<ul>\n")
+                    is_ul = True
+                html_line = f"<li>{line[1:].strip()}</li>"
+            elif line.startswith("######"):
+                is_ul = set_ul_false(is_ul, h)
                 html_line = f"<h6>{line[6:].strip()}</h6>"
             elif line.startswith("#####"):
+                is_ul = set_ul_false(is_ul, h)
                 html_line = f"<h5>{line[5:].strip()}</h5>"
             elif line.startswith("####"):
+                is_ul = set_ul_false(is_ul, h)
                 html_line = f"<h4>{line[4:].strip()}</h4>"
             elif line.startswith("###"):
+                is_ul = set_ul_false(is_ul, h)
                 html_line = f"<h3>{line[3:].strip()}</h3>"
             elif line.startswith("##"):
+                is_ul = set_ul_false(is_ul, h)
                 html_line = f"<h2>{line[2:].strip()}</h2>"
             elif line.startswith("#"):
+                is_ul = set_ul_false(is_ul, h)
                 html_line = f"<h1>{line[1:].strip()}</h1>"
             else:
-                continue
+                is_ul = set_ul_false(is_ul, h)
+                if line.strip():
+                    html_line = f"<p>{line.strip()}</p>"
 
-            html.write(html_line + "\n")
+            if html_line:
+                h.write(html_line + "\n")
 
 def main():
     """
