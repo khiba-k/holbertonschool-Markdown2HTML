@@ -3,7 +3,7 @@
 Script to convert markdown to html.
 """
 
-import sys
+import os
 from pathlib import Path
 
 def main():
@@ -25,8 +25,8 @@ def main():
         print("Usage: ./markdown2html.py README.md README.html" , file=sys.stderr)
         sys.exit(1)
 
-    file_path = Path(sys.argv[1])
-    if not file_path.exists():
+    file_path = os.path.exists(sys.argv[1])
+    if not file_path:
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
         sys.exit(1)
     sys.exit(0)
