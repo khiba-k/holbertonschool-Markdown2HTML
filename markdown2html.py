@@ -1,6 +1,10 @@
 #!/usr/bin/python3
+"""
+Script to convert markdown to html.
+"""
+
+import sys
 import os
-from pathlib import Path
 
 def main():
     """Converts a markdown file to an HTML file.
