@@ -6,19 +6,13 @@ Script to convert markdown to html.
 import sys
 import os
 
-def main():
+if __name__ == "__main__":
     """Converts a markdown file to an HTML file.
 
     This script takes two command-line arguments:
     1. Markdown file name.
     2. Output path HTML file name.
-
-    It checks if the correct number of arguments are provided and whether the markdown
-    file exists. If the file is missing or the arguments are incorrect, the script exits
-    with an error message.
-
-    Returns:
-        None: The function prints the status to the console and exits on error.
+    
     """
 
     if len(sys.argv) != 3:
@@ -31,5 +25,4 @@ def main():
         sys.exit(1)
 
     sys.exit(0)
-if __name__ == "__main__":
-    main()
+
