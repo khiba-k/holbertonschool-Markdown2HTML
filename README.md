@@ -1,2 +1,2 @@
 # holbertonschool-Markdown2HTML
-##Holberton School, Markdown to HTML Project
+## Holberton School, Markdown to HTML Project
