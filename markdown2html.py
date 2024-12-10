@@ -11,12 +11,16 @@ def main():
     Converts a markdown file to an HTML file.
     """
 
+    #Checks if there are two args provided
     if len(sys.argv) != 3:
         print("Usage: ./markdown2html.py README.md README.html" , file=sys.stderr)
         sys.exit(1)
 
-    file_path = os.path.exists(sys.argv[1])
-    if not file_path:
+    md_file = sys.argv[1]
+    html_file = sys.argv[2]
+    
+    #Checks if the file exists
+    if not os.path.exists(md_file):
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
         sys.exit(1)
 
