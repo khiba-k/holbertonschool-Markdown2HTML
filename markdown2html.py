@@ -29,6 +29,6 @@ def main():
     if not file_path.exists():
         print(f"Missing {sys.argv[1]}", file=sys.stderr)
         sys.exit(1)
-
+    sys.exit(0)
 if __name__ == "__main__":
     main()
