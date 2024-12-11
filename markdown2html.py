@@ -57,6 +57,10 @@ def convertor(md_file, html_file):
                     h.write("<ul>\n")
                     is_ul = True
                 html_line = f"<li>{line[1:].strip()}</li>"
+            elif "**" in line:
+                html_line = f"<b>{line.replace('**', '').strip()}</b>"
+            elif "__" in line:
+                html_line = f"<em>{line.replace('__', '').strip()}</em>"
             elif line.startswith("*"):
                 is_ul = set_ul_false(is_ul, h)
                 is_p = set_p_false(is_ol, h)
