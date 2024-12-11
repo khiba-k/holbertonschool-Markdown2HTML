@@ -45,10 +45,11 @@ def convertor(md_file, html_file):
         is_ol = False
         is_p = False
         
-        
-        for i, line in enumerate(md_content.split("\n")):
+        # Loop through md content
+        for line in md_content.split("\n"):
             html_line = ""
 
+            # Checks
             if line.startswith("-"):
                 is_ol = set_ol_false(is_ol, h)
                 is_p = set_p_false(is_ol, h)
@@ -93,6 +94,7 @@ def convertor(md_file, html_file):
                 is_ol = set_ol_false(is_ol, h)
                 is_p = set_p_false(is_p, h)
                 html_line = f"<h1>{line[1:].strip()}</h1>"
+            # Check if line is empty
             elif not line.strip():
                 is_ul = set_ul_false(is_ul, h)
                 is_ol = set_ol_false(is_ol, h)
@@ -112,7 +114,7 @@ def convertor(md_file, html_file):
 
             if html_line:
                 h.write(html_line + "\n")
-                
+        # Close tags if end of file
         is_ul = set_ul_false(is_ul, h)
         is_ol = set_ol_false(is_ol, h)
         is_p = set_p_false(is_p, h)
